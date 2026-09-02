@@ -80,8 +80,15 @@ jd_requirements = jd_result.skills + jd_result.critical_requirements
 resume_embeddings = model.encode(resume_bullets)
 jd_embeddings = model.encode(jd_requirements)
 
+THRESHOLD = 0.3   
+
 for i, jd_req in enumerate(jd_requirements):
     print(f"\nJD Requirement: {jd_req}")
-    scores = util.cos_sim(jd_embeddings[i], resume_embeddings)  
-    best_index = scores.argmax().item()                          
-    print(f"  Best match ({scores[0][best_index]:.2f}): {resume_bullets[best_index]}")
+    scores = util.cos_sim(jd_embeddings[i], resume_embeddings)
+    best_index = scores.argmax().item()
+    best_score = scores[0][best_index].item()
+
+    if best_score >= THRESHOLD:
+        print(f"  MATCH ({best_score:.2f}): {resume_bullets[best_index]}")
+    else:
+        print(f"  NO STRONG MATCH ({best_score:.2f}) - likely a gap")
