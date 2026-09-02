@@ -31,4 +31,4 @@ for section_name, section_lines in result.items():   # loop through each section
     print(f"--- {section_name} ---")                 # print the section name as a header
     for line in section_lines:
         print(line)
-    print()   # blank line for spacing between sections
+    print()  
