@@ -21,19 +21,32 @@ class VerificationResult(BaseModel):
 
 def verify_rewrite(original_bullet, rewritten_bullet):
     prompt = f"""
-    You are a strict fact-checker comparing an original resume bullet to a rewritten version.
+     You are a strict fact-checker comparing an original resume bullet to a rewritten version.
 
     Break the REWRITTEN bullet down into individual factual claims (skills, tools,
     metrics, scope words like "scalable" or "high-traffic", responsibilities).
 
     For each claim, mark it as:
     - SUPPORTED: this exact claim is present in the ORIGINAL bullet
-    - UNSUPPORTED: this claim is NOT present in the original - it was invented or exaggerated
-    - AMBIGUOUS: implied but not explicitly stated in the original
+    - UNSUPPORTED: this is a specific, concrete claim NOT present in the original -
+      such as a fabricated number, percentage, invented tool/technology, or an
+      inflated scope/scale word (e.g. "scalable", "enterprise-grade", "high-traffic")
+    - AMBIGUOUS: a general, reasonable phrase describing standard practice that is
+      implied by what IS in the original, without adding any new specific fact,
+      number, tool, or scale claim
 
-    Be strict: any specific number, percentage, or scale/scope word ("scalable",
-    "high-traffic", "enterprise-grade") that is not explicitly in the original
-    must be marked UNSUPPORTED.
+    Examples to guide your judgment:
+    - Original: "used JWT and RBAC" -> Rewrite says "following security best practices"
+      This is AMBIGUOUS (a general phrase implied by real security practices already present),
+      NOT UNSUPPORTED - it introduces no new specific fact.
+    - Original: "used JWT and RBAC" -> Rewrite says "increased security by 40%"
+      This is UNSUPPORTED - a specific fabricated number.
+    - Original: "used JWT and RBAC" -> Rewrite says "using OAuth2 and JWT"
+      This is UNSUPPORTED - a specific fabricated tool (OAuth2).
+
+    Be strict about SPECIFIC fabricated facts (numbers, tools, named technologies,
+    scale/scope adjectives) - these are always UNSUPPORTED, never AMBIGUOUS.
+    Be lenient about GENERAL reasonable phrasing that adds no new specific fact.
 
     Original bullet:
     {original_bullet}
@@ -49,7 +62,7 @@ def verify_rewrite(original_bullet, rewritten_bullet):
 
     try:
         response = client.models.generate_content(
-            model="gemini-3.6-flash",
+            model="gemini-3.5-flash-lite",
             contents=prompt,
             config={
                 "response_mime_type": "application/json",
