@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 .DS_Store
 resume.pdf
+backend/applications.db
+*.db
