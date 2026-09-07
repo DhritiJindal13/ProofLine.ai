@@ -6,3 +6,4 @@ __pycache__/
 resume.pdf
 backend/applications.db
 *.db
+Frontend/node_modules/
