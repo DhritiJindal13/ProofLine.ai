@@ -21,25 +21,27 @@ ProofLine compares a resume against a job description, shows exactly which requi
 
 ProofLine takes the resume and job description through a structured analysis pipeline — parsing the sources, mapping experience, comparing skills, checking supporting evidence, and preparing rewrites.
 
-![Analysis pipeline](./screenshots/analysis-pipeline.png)
+<img src="./screenshots/analysis-pipeline.png" width="800">
 
 ### Evidence-based gap analysis
 
-A real analysis run showing a **91% role match**, with **21 supported skills** and **2 missing or unclear requirements**. Each match is backed by evidence from the uploaded resume rather than being presented as a black-box score.
+A real analysis run showing a **91% role match**, with **21 supported skills** and **2 missing or unclear requirements**. Each match is backed by evidence from the uploaded resume.
 
-![Gap analysis](./screenshots/gap-analysis.png)
+<img src="./screenshots/gap-analysis.png" width="800">
 
 ### Verified rewrites
 
 ProofLine strengthens resume bullets while preserving the underlying facts. Each rewrite is compared against the source resume and given a factuality verdict — including **REVIEW** when a claim needs confirmation rather than being silently approved.
 
-![Verified rewrites](./screenshots/verified-rewrites.png)
+<img src="./screenshots/verified-rewrites.png" width="800">
 
 ### Application tracking
 
 Completed analyses can be saved with the **company, role, date, and match score**, giving users a lightweight record of the applications they've analyzed.
 
-![Application tracker](./screenshots/application-tracker.png)
+<img src="./screenshots/application-tracker.png" width="800">
+
+---
 
 ---
 
