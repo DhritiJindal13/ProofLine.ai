@@ -1,6 +1,5 @@
 import pdfplumber
 
-# known section headers we expect to find in the resume (must match exactly, case-sensitive for now)
 SECTION_HEADERS = ["EDUCATION", "TECHNICAL SKILLS", "EXPERIENCE", "PROJECTS", "LEADERSHIP"]
 
 def parse_resume(pdf_path):
@@ -10,16 +9,16 @@ def parse_resume(pdf_path):
             all_text += page.extract_text()
             all_text += "\n"
 
-    lines = all_text.split("\n")          # split the big string into a list of individual lines
+    lines = all_text.split("\n")         
 
-    sections = {}                          # dictionary to hold section_name -> list of lines
-    current_section = None                 # tracks which section we're currently inside
+    sections = {}                          
+    current_section = None                
 
     for line in lines:
         stripped = line.strip()            # remove leading/trailing whitespace from this line
         if stripped in SECTION_HEADERS:    # is this line a section header?
             current_section = stripped     # switch to this new section
-            sections[current_section] = [] # start an empty list to collect lines under it
+            sections[current_section] = [] 
         elif current_section and stripped: # if we're inside a section AND the line isn't empty
             sections[current_section].append(stripped)  # add this line to the current section
 
