@@ -117,15 +117,15 @@ GEMINI_API_KEY=your_key_here
 
 ### 3. Start the backend
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv backend/venv
+source backend/venv/bin/activate
 pip install -r requirements.txt
 cd backend
-uvicorn main:app --reload
+PYTHONPATH=../scripts python -m uvicorn main:app --reload
 ```
 Confirm it's running at `http://localhost:8000/health`.
 
-### 4. Start the frontend
+### 4. Start the Frontend
 In a new terminal:
 ```bash
 cd Frontend
@@ -140,15 +140,28 @@ Open `http://localhost:5173`, upload a resume, paste a job description, and clic
 
 ```
 ProofLine.ai/
-├── backend/           FastAPI app, main API endpoints
-├── Frontend/          React app (Vite)
-├── db/                SQLite database logic
-├── pdf_test.py        Resume parsing
-├── jd_parser.py       Job description parsing
-├── guardrail.py       Claim-level factuality verification
-├── rewrite_engine.py  Bullet rewrite generation
-├── pipeline.py        Combined rewrite + verification flow
-└── eval_dataset.py    Guardrail evaluation test cases
+├── Frontend/
+├── backend/
+│   ├── main.py
+│   └── routes/
+├── db/
+├── screenshots/
+├── scripts/
+│   ├── docx_test.py
+│   ├── embeddings_test.py
+│   ├── gemini_test.py
+│   ├── matching_test.py
+│   ├── pdf_test.py
+│   └── quick_review_test.py
+├── tests/
+│   ├── eval_dataset.py
+│   └── run_evaluation.py
+├── guardrail.py
+├── jd_parser.py
+├── pipeline.py
+├── rewrite_engine.py
+├── settings.py
+└── requirements.txt
 ```
 
 ---
