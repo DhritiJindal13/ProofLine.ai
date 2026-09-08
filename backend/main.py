@@ -99,8 +99,6 @@ async def analyze(file: UploadFile, jd_text: str = Form(...)):
                 "score": round(best_score, 2),
             })
 
-    # dedupe by bullet text - avoid generating near-identical rewrites when
-    # multiple JD requirements match the same underlying resume bullet
     seen_bullets = set()
     weak_matches = []
     for m in matches:

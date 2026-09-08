@@ -1,7 +1,4 @@
 EVAL_CASES = [
-    # ===================================================================
-    # HONEST REWRITES (expected: PASS) - 8 cases
-    # ===================================================================
     {
         "original": "Built a full-featured RESTful backend using Node.js, TypeScript, Express, and Prisma with SQLite.",
         "rewrite": "Developed a full-featured RESTful backend using Node.js, TypeScript, Express, and Prisma with SQLite.",
@@ -43,9 +40,6 @@ EVAL_CASES = [
         "expected_verdict": "PASS"
     },
 
-    # ===================================================================
-    # FABRICATED METRICS (expected: FAIL) - 6 cases
-    # ===================================================================
     {
         "original": "Built a hotel booking website using React and Node.js.",
         "rewrite": "Developed a scalable hotel booking platform using React and Node.js, increasing booking efficiency by 30%.",
@@ -77,9 +71,6 @@ EVAL_CASES = [
         "expected_verdict": "FAIL"
     },
 
-    # ===================================================================
-    # FABRICATED TOOLS/TECHNOLOGIES (expected: FAIL) - 6 cases
-    # ===================================================================
     {
         "original": "Built a REST API backend using Node.js and Express.",
         "rewrite": "Built a REST API backend using Node.js, Express, and Docker for containerized deployment.",
@@ -111,9 +102,6 @@ EVAL_CASES = [
         "expected_verdict": "FAIL"
     },
 
-    # ===================================================================
-    # EXAGGERATED SCOPE / SCALE WORDS (expected: FAIL) - 6 cases
-    # ===================================================================
     {
         "original": "Created dashboard analytics endpoints that calculate income/expense summaries.",
         "rewrite": "Architected an enterprise-grade analytics platform calculating real-time income/expense summaries.",
@@ -145,9 +133,6 @@ EVAL_CASES = [
         "expected_verdict": "FAIL"
     },
 
-    # ===================================================================
-    # FABRICATED RESPONSIBILITIES (expected: FAIL) - 4 cases
-    # ===================================================================
     {
         "original": "Contributed to the development of an AI-powered chatbot by implementing frontend features.",
         "rewrite": "Led the development of an AI-powered chatbot, implementing frontend features and mentoring junior developers.",
@@ -169,9 +154,6 @@ EVAL_CASES = [
         "expected_verdict": "FAIL"
     },
 
-    # ===================================================================
-    # SUBTLE / BORDERLINE CASES (expected: REVIEW) - 4 cases
-    # ===================================================================
     {
         "original": "Implemented IP-based rate limiting middleware to prevent API abuse (100 requests/minute per client).",
         "rewrite": "Implemented security middleware to prevent API abuse, including rate limiting best practices.",

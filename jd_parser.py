@@ -8,7 +8,6 @@ api_key = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=api_key)
 
 
-# --- schema defining the exact shape we want Gemini's answer in ---
 class JDRequirements(BaseModel):
     skills: list[str]
     responsibilities: list[str]
@@ -41,7 +40,6 @@ def extract_jd_requirements(jd_text):
         return None
 
 
-# --- quick test on a real JD ---
 real_jd = """
 QA Intern
 Job Title: QA Intern

@@ -4,8 +4,6 @@ from google import genai
 
 load_dotenv()
 api_key = os.getenv("GEMINI_API_KEY")
-# print("API key loaded:", api_key is not None, flush=True)
-
 client = genai.Client(api_key=api_key)
 
 try:
