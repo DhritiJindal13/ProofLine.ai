@@ -46,23 +46,21 @@ Completed analyses can be saved with the **company, role, date, and match score*
 ---
 ## How It Works
 
+
 ```text
 Resume + Job Description
           ↓
-     Document Parsing
+   Parse & Structure
           ↓
-   Resume / JD Structuring
-          ↓
-   Semantic Requirement Matching
+   Semantic Matching
           ↓
       Gap Analysis
           ↓
-    Evidence-Based Rewrite
+   Evidence-Based Rewrite
           ↓
-     Independent Claim
-        Verification
+ Independent Verification
           ↓
-   PASS / REVIEW / FAIL
+    PASS / REVIEW / FAIL
 ```
 ---
 
@@ -78,7 +76,6 @@ On the core safety-relevant distinction — whether a rewrite contains a fabrica
 
 The intermediate **"needs review"** category was initially under-used and was improved by adding contrasting examples to the verification prompt.
 
-Real-world performance will vary — this evaluation is a **controlled stress test, not a claim of perfect real-world accuracy**.
 ---
 
 ## 4. Tech Stack
