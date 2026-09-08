@@ -10,13 +10,13 @@ client = genai.Client(api_key=api_key)
 
 class Claim(BaseModel):
     claim: str
-    status: str        # "SUPPORTED", "UNSUPPORTED", or "AMBIGUOUS"
+    status: str
     reason: str
 
 
 class VerificationResult(BaseModel):
     claims: list[Claim]
-    overall_verdict: str    # "PASS", "FAIL", or "REVIEW"
+    overall_verdict: str
 
 
 def verify_rewrite(original_bullet, rewritten_bullet):
@@ -75,7 +75,6 @@ def verify_rewrite(original_bullet, rewritten_bullet):
         return None
 
 
-#if __name__ == "__main__":
     bad_original = "Built a hotel booking website using React and Node.js."
     bad_rewrite = "Developed a scalable hotel booking platform using React and Node.js, increasing booking efficiency by 30%."
 

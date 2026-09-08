@@ -9,11 +9,11 @@ for case in EVAL_CASES:
 
     if verification is None:
         print("Retrying after failure...")
-        time.sleep(3)                                    # wait 3 seconds before retrying
+        time.sleep(3)
         verification = verify_rewrite(case["original"], case["rewrite"])
 
     if verification is None:
-        actual_verdict = "ERROR"                          # still failed after retry, mark it clearly
+        actual_verdict = "ERROR"
     else:
         actual_verdict = verification.overall_verdict
 
