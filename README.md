@@ -2,7 +2,9 @@
 
 **Find what your resume is missing for a job, and fix it without lying about it.**
 
-ProofLine compares a resume against a job description, shows exactly which requirements are covered and which aren't, and rewrites weak bullet points to better match the job's language. Every rewrite is independently fact-checked by a second AI pass before it's shown, so it can improve wording but can't quietly invent a metric, a tool, or an achievement that isn't actually in the original resume.
+ProofLine analyzes a resume against a job description, identifies missing or weakly supported requirements, and generates tailored rewrites without inventing experience, metrics, or skills.
+
+Instead of asking one LLM to both rewrite and verify its own output, ProofLine uses a separate verification pass to check every generated claim against evidence from the original resume.
 
 ---
 
@@ -42,7 +44,26 @@ Completed analyses can be saved with the **company, role, date, and match score*
 <img src="./screenshots/application-tracker.png" width="800">
 
 ---
+## How It Works
 
+```text
+Resume + Job Description
+          ↓
+     Document Parsing
+          ↓
+   Resume / JD Structuring
+          ↓
+   Semantic Requirement Matching
+          ↓
+      Gap Analysis
+          ↓
+    Evidence-Based Rewrite
+          ↓
+     Independent Claim
+        Verification
+          ↓
+   PASS / REVIEW / FAIL
+```
 ---
 
 ## 3. Why the guardrail exists
@@ -51,15 +72,20 @@ An LLM asked to "rewrite this bullet to sound stronger" has no built-in incentiv
 
 ProofLine treats rewriting and verification as two separate jobs, run by two independent model calls. The rewriter is constrained by explicit rules against inventing numbers, tools, or scale. The verifier only ever sees the original text and the candidate rewrite, decomposes the rewrite into individual factual claims, and checks each one against the source. A single model checking its own output has no reason to catch its own mistake — a second, separate pass does.
 
-This was tested against a 34-case hand-built dataset spanning honest rewrites, fabricated metrics, fabricated tools, and deliberately ambiguous cases. On the core safety-relevant distinction — does a rewrite contain a fabrication or not — the guardrail scored **100% precision and 100% recall**. The one place it fell short on the first pass was an intermediate "needs review" category for genuinely ambiguous phrasing, which it barely used at first. That was traced to a prompt instruction overpowering the model's willingness to use the softer label, and fixed by adding contrasting examples — visible above in the actual REVIEW verdicts rather than a blanket pass or fail.
+This was tested against a **34-case hand-built dataset** spanning honest rewrites, fabricated metrics, fabricated tools, exaggerated scope, and deliberately ambiguous cases.
 
+On the core safety-relevant distinction — whether a rewrite contains a fabrication or not — the guardrail achieved **100% precision and 100% recall** on this fixed evaluation set.
+
+The intermediate **"needs review"** category was initially under-used and was improved by adding contrasting examples to the verification prompt.
+
+Real-world performance will vary — this evaluation is a **controlled stress test, not a claim of perfect real-world accuracy**.
 ---
 
 ## 4. Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Frontend | React (Vite), plain CSS |
+| Frontend | React (Vite), CSS |
 | Backend | FastAPI |
 | LLM | Google Gemini API |
 | Semantic matching | sentence-transformers |
